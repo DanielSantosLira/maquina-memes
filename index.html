@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css/style.css">
+    <link rel="stylesheet" href="/style.css/reset.css">
+    <link rel="shortcut icon" href="/picture/daniel.png" type="image/x-icon">
+    
+    <title>Máquina de Memes</title>
+</head>
+
+<body>
+    <div class="conteiner">
+        
+        <div class="app" id="downlabled">
+
+
+            <div class="logo">
+              <img src="picture/logo.png" alt="" width="100px">
+            </div>
+            <div class="app-img">
+                <textarea name="" class="text-box" placeholder="Digite Seu Meme" aria-multiline="true"></textarea>
+                 <div id="display-image"></div>
+                 <textarea name=""   class="text-box" placeholder="Digite Seu Meme" aria-multiline="true"></textarea>
+            </div>
+            <div class="app-foto-picker">
+               <select id="memes-list" onchange="changeMemePicture(this.value)" >
+                <option value="1"></option>
+               </select>
+               <input type="file" id="image-input" accept="imagem/jpeg, imagem/png, imagem/jpg">
+            </div>
+            <div class="download">
+               <button id="btn-download">Download</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="/javascript/script.js"></script>
+    <script src="/javascript/html2cavas.js"></script>
+    <script>
+        document.getElementById("btn-download").onclick = () =>{
+            const screenshotPrint = document.querySelector("#downlabled")
+
+            html2canvas(screenshotPrint).then((canvas)=>{
+                const base64Image = canvas.toDataURL("image/png")
+                let anchor = document.createElement("a")
+                anchor.setAttribute("href", base64Image)
+                anchor.setAttribute("download", "my-meme.png")
+                anchor.click()
+                anchor.remove()
+            })
+        }
+   
+</script>
+</body>
+
+</html>
